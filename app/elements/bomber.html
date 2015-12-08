@@ -1,0 +1,115 @@
+<dom-module id="my-bomber">
+
+    <style>
+
+        :host {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: #3c3939;
+            cursor: pointer;
+            position: relative;
+        }
+
+        :host .endGameContainer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(255, 255, 255, 0.41);
+            color: black;
+        }
+
+        :host .endGameContainer button {
+            margin-top: 10px;
+            width: 200px;
+        }
+
+        :host .endGameCard {
+            margin-top: 70px;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+            padding: 5px;
+            text-align: center;
+        }
+
+        :host .description {
+            text-align: center;
+            color: white;
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(51, 68, 101, 0.9);
+            padding-top: 50px;
+            display: inline-table;
+        }
+
+        :host .description:hover {
+            background-color: rgba(51, 68, 101, 0.75);
+        }
+
+        :host p {
+            margin: 0;
+        }
+
+        :host .againButton {
+            color: white;
+        }
+
+    </style>
+
+
+    <template>
+
+        <canvas id="bomber"></canvas>
+        <div id="endGame" class="endGameContainer">
+            <div class="endGameCard shadow-z2">
+                <p id="message"></p>
+                <paper-button id="againButton" class="againButton">Play again</paper-button>
+            </div>
+        </div>
+        <div id="description" class="description" on-click="hideDescription">
+            <content></content>
+        </div>
+
+    </template>
+
+    <script src="/scripts/bomber.js"></script>
+
+    <script>
+        Polymer({
+            is: "my-bomber",
+
+            behaviors: [
+                Polymer.IronResizableBehavior
+            ],
+
+            listeners: {
+                'iron-resize': '_onResize'
+            },
+
+            ready: function() {
+                this.bomber = Bomber.create(this.$);
+                this.bomber.newGame(
+                    window.innerWidth,
+                    200
+                );
+            },
+
+            _onResize: function() {
+                this.bomber.newGame(this.parentNode.offsetWidth, this.parentNode.offsetHeight);
+            },
+
+            hideDescription: function() {
+                this.$.description.style.display = 'none';
+            }
+        });
+    </script>
+
+</dom-module>

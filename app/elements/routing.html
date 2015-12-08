@@ -1,0 +1,31 @@
+<script src="../bower_components/page/page.js"></script>
+<script>
+window.addEventListener('WebComponentsReady', function() {
+
+    var app = document.querySelector('my-portfolio');
+
+    function scrollToTop(ctx, next) {
+        app.scrollPageToTop();
+        next();
+    }
+
+    // Routes
+    page('/', scrollToTop, function() {
+        app.route = 'home';
+    });
+
+    page('/project', scrollToTop, function() {
+        app.route = 'project';
+    });
+
+    page('/about', scrollToTop, function() {
+        app.route = 'about';
+    });
+
+    // add #! before urls
+    page({
+        hashbang: false
+    });
+
+});
+</script>

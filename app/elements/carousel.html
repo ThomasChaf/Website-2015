@@ -1,0 +1,124 @@
+<dom-module id="my-carousel">
+
+    <style>
+        :host {
+            position: relative;
+            display: inline-flex;
+            height: 317px;
+            background-color: var(--main-50);
+            width: 100%;
+        }
+
+        :host .carouselContainer {
+            width: inherit;
+            margin-left: auto;
+            margin-right: auto;
+            height: 100%;
+            position: relative;
+        }
+
+        :host ::content my-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        :host .arrow {
+            height: 100%;
+            display: inline;
+            position: relative;
+            margin: 0;
+            border-radius: 0;
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        :host .arrow i {
+            margin-top: 130px;
+        }
+
+        :host .arrow.left {
+            float: left;
+        }
+
+        :host .arrow.right {
+            float: right;
+        }
+    </style>
+
+    <template>
+
+        <paper-button class="arrow left" on-click="prev">
+            <i class="fa fa-angle-left"></i>
+        </paper-button>
+
+        <div class="carouselContainer">
+            <content></content>
+        </div>
+
+        <paper-button class="arrow right" on-click="next">
+            <i class="fa fa-angle-right"></i>
+        </paper-button>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-carousel",
+
+            properties: {
+                index: {
+                    type: Number,
+                    value: 0
+                },
+                length: {
+                    type: Number,
+                    value: 'this.getLength'
+                }
+            },
+
+            listeners: {
+                'end-fade-out': '_onEndFadeOut'
+            },
+
+            _onEndFadeOut: function () {
+                this.getImage(this.index).fadeIn();
+            },
+
+            getLength: function() {
+                return this.getContentChildren().length;
+            },
+
+            getImage: function(index) {
+                return this.getContentChildren()[index];
+            },
+
+            addIndex: function(inc) {
+                this.index = this.index + inc;
+                if (this.index < 0)
+                    this.index = this.getLength() + this.index;
+                this.index = this.index % this.getLength();
+            },
+
+            prev: function() {
+                this.getImage(this.index).fadeOut();
+                this.addIndex(-1);
+            },
+
+            next: function() {
+                this.getImage(this.index).fadeOut();
+                this.addIndex(1);
+            },
+
+            ready: function() {
+                for (var child, index = 0; child = this.getImage(index); index++) {
+                    child.style.opacity = (index == 0 ? 1 : 0);
+                }
+                // setInterval(this.next.bind(this), 5000);
+            }
+        });
+    </script>
+
+</dom-module>

@@ -1,0 +1,95 @@
+<dom-module id="my-image">
+
+    <style>
+        .imgContainer {
+            height: 250px;
+            width: 100%;
+            margin: 0;
+            opacity: inherit;
+            overflow: hidden;
+        }
+
+        .imgContainer img {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .imgDescription {
+            padding: 10px;
+        }
+
+    </style>
+
+    <template>
+
+        <div class="imgContainer">
+            <img src="{{_attributes.src}}" alt="{{_attributes.alt}}" height="200px"/>
+        </div>
+        <hr>
+        <div class="imgDescription">
+            <content></content>
+        </div>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-image",
+
+            behaviors: [
+                Polymer.NeonAnimationRunnerBehavior
+            ],
+
+            properties: {
+                animationConfig: {
+                    type: Object,
+                    value: function() {
+                        return {
+                            'fade-in': {
+                                name: 'fade-in-animation',
+                                node: this
+                            },
+                            'fade-out': {
+                                name: 'fade-out-animation',
+                                node: this
+                            }
+                        }
+                    }
+                }
+            },
+
+            listeners: {
+                'neon-animation-finish': '_onAnimationFinish'
+            },
+
+            _onAnimationFinish: function() {
+                this.style.opacity = this._opacity;
+                if (this._opacity == 0)
+                    this.fire('end-fade-out');
+            },
+
+            fadeIn: function () {
+                this._opacity = 1;
+                this.playAnimation('fade-in');
+            },
+
+            fadeOut: function () {
+                this._opacity = 0;
+                this.playAnimation('fade-out');
+            },
+
+            ready: function() {
+                this._opacity = 1;
+                this._attributes = {
+                    src: this.attributes.src.value,
+                    alt: this.attributes.alt.value
+                }
+                if (this.attributes.color)
+                    this.children[0].style.backgroundColor = this.attributes.color.value;
+                this.children[0].children[0].style.marginTop = this.attributes.top.value + "px";
+            }
+        });
+    </script>
+
+</dom-module>

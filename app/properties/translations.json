@@ -1,0 +1,94 @@
+{
+	"fr" : {
+		"about"     : "A propos",
+		"about_me" : "A propos de moi",
+		"birthday" : "Anniversaire",
+		"description" : "Je m'appelle thomas chafiol, je suis developpeur.",
+		"here_projects" : "Voici quelques uns de mes projets",
+		"home" : "Accueil",
+		"hobbies" : "Centres d'intérets",
+		"name" : "Nom",
+		"other_skills" : "Autres compétences",
+		"overview" : "Apercu de mon CV",
+		"personal"  : "Site personnel",
+		"project"  : "Mes projets",
+		"residence" : "Lieu de résidence",
+		"resume" : "Mon cv",
+		"resume1" :
+			"Actuellement pleinement investi dans mes études en informatique, je suis un développeur passionné par ce qui touche au monde de la programmation. Mon sérieux me permet de m’adapter et d’être efficace sur des technologies nouvelles.",
+		"resume2" :
+			"Volontaire et motivé, j’aime aller de l’avant afin de me donner les moyens de réussir. J’aime valoriser mon travail, me sentir utile et donner de la valeur à ce que je façonne.",
+		"resume3" :
+			"Je tire mes plus beaux souvenirs de mes voyages. Je suis curieux du monde qui m'entoure, ouvert d’esprit et désireux de tenter de nouvelles expériences.",
+		"skills" : "Languages pratiqués",
+		"sports" : "Sports et voyages",
+		"sub_description" : "Voici mes projets.",
+		"thomas": "Thomas Chafiol",
+		"work_epitech" : "Assistant pedagogique.",
+		"work_fruition" : "Developpeur web.",
+		"work_human_talk" : "Organisateur de conférences.",
+		"worked_with" : "J'ai travaillé avec eux"
+	},
+	"en" : {
+		"about" : "About",
+		"about_me" : "About me",
+		"birthday" : "Birthday",
+		"description" : "Je m'appelle thomas chafiol, je suis web developpeur.",
+		"description" : "I'm thomas chafiol, a web developer.",
+		"here_projects" : "Here are some of my projects",
+		"hobbies" : "Hobbies and interests",
+		"home" : "Home",
+		"name" : "Name",
+		"other_skills" : "Other skills",
+		"overview" : "Overview of my resume",
+		"personal" : "Personal website",
+		"project"  : "My projects",
+		"residence" : "Location",
+		"resume" : "My resume",
+		"resume1" :
+			"Currently fully committed to my computer science studies, I am a passionate developer interessed in everything related to the world of programming. My seriousness allows me to adapt and be effective on new technologies.",
+		"resume2" :
+			"Motivated, I’m always moving forward to succeed. I like to promote my work, i like to feel useful and give value to what I make.",
+		"resume3" :
+			"My best memories come from my trips. I am curious about the world around me, opened minded and willing to try new things.",
+		"skills" : "Skills",
+		"sports" : "Sports and trips",
+		"sub_description" : "Here are my projects.",
+		"thomas": "Thomas Chafiol",
+		"work_epitech" : "Assistant pedagogique.",
+		"work_fruition" : "Developpeur web.",
+		"work_human_talk" : "Organisateur de conférences.",
+		"worked_with" : "I've worked with them"
+	},
+	"us" : {
+		"about" : "About",
+		"about_me" : "About me",
+		"birthday" : "Birthday",
+		"description" : "Je m'appelle thomas chafiol, je suis web developpeur.",
+		"description" : "I'm thomas chafiol, a web developer.",
+		"here_projects" : "Here are some of my projects",
+		"hobbies" : "Hobbies and interests",
+		"home" : "Home",
+		"name" : "Name",
+		"other_skills" : "Other skills",
+		"overview" : "Overview of my resume",
+		"personal" : "Personal website",
+		"project"  : "My projects",
+		"residence" : "Location",
+		"resume" : "My resume",
+		"resume1" :
+			"Currently fully committed to my computer science studies, I am a passionate developer interessed in everything related to the world of programming. My seriousness allows me to adapt and be effective on new technologies.",
+		"resume2" :
+			"Motivated, I’m always moving forward to succeed. I like to promote my work, i like to feel useful and give value to what I make.",
+		"resume3" :
+			"My best memories come from my trips. I am curious about the world around me, opened minded and willing to try new things.",
+		"skills" : "Skills",
+		"sports" : "Sports and trips",
+		"sub_description" : "Here are my projects.",
+		"thomas": "Thomas Chafiol",
+		"work_epitech" : "Assistant pedagogique.",
+		"work_fruition" : "Developpeur web.",
+		"work_human_talk" : "Organisateur de conférences.",
+		"worked_with" : "I've worked with them"
+	}
+}

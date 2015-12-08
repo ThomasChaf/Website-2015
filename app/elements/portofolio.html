@@ -1,0 +1,135 @@
+<dom-module id="my-portfolio">
+
+    <style is="custom-style">
+
+        paper-drawer-panel {
+            --paper-drawer-panel-main-container: {
+                background-color: var(--main-100);
+            };
+        }
+
+        .bottom {
+            padding-left: 10px;
+        }
+
+    </style>
+
+    <template>
+
+        <my-translator tr={{trans}}></my-translator>
+
+        {{ trans.en.home }}
+
+        <paper-drawer-panel id="paperDrawerPanel" responsive-width="4000px">
+            <!-- Drawer Scroll Header Panel -->
+            <paper-scroll-header-panel drawer fixed>
+
+                <!-- Drawer Toolbar -->
+                <paper-toolbar id="drawerToolbar">
+                    <span class="paper-font-title">Menu</span>
+                </paper-toolbar>
+
+                <!-- Drawer Content -->
+                <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
+                    <a data-route="home" href="/" on-click="onDataRouteClick">
+                        <iron-icon icon="home"></iron-icon>
+                        <span>Home</span>
+                    </a>
+
+                    <a data-route="users" href="/project" on-click="onDataRouteClick">
+                        <iron-icon icon="info"></iron-icon>
+                        <span>Project</span>
+                    </a>
+
+                    <a data-route="contact" href="/about" on-click="onDataRouteClick">
+                        <iron-icon icon="mail"></iron-icon>
+                        <span>About</span>
+                    </a>
+                </paper-menu>
+            </paper-scroll-header-panel>
+
+            <!-- Main Area -->
+            <paper-scroll-header-panel main condenses keep-condensed-header header-height="500px">
+
+                <!-- Main Toolbar -->
+                <paper-toolbar id="mainToolbar" class="tall">
+                    <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+
+                    <div class="top title">
+                        Thomas Chafiol
+                    </div>
+
+                    <div class="bottom title">
+                        Personnal portofolio
+                    </div>
+
+                </paper-toolbar>
+
+                <!-- Main Content -->
+                <div class="content">
+                    <iron-pages attr-for-selected="data-route" selected="[[route]]">
+
+                        <div data-route="home">
+                            <my-home-page text="{{ dictionary }}"></my-home-page>
+                        </div>
+
+                        <div data-route="project">
+                            <my-project-page></my-project-page>
+                        </div>
+
+                        <div data-route="about">
+                            <my-about-page></my-about-page>
+                        </div>
+
+                    </iron-pages>
+                </div>
+            </paper-scroll-header-panel>
+        </paper-drawer-panel>
+
+    </template>
+
+    <script>
+
+        Polymer({
+            is: "my-portfolio",
+
+            behaviors: [
+                Polymer.IronResizableBehavior
+            ],
+
+            properties: {
+                dictionary: Object
+            },
+
+            listeners: {
+                'paper-header-transform': 'resizeHeader',
+                'translationSet' : 'onTranslationSet',
+                'iron-resize': '_onResize'
+            },
+
+            ready: function() {
+                document.querySelector('paper-drawer-panel').closeDrawer();
+            },
+
+            _onResize: function(e) {
+            },
+
+            resizeHeader: function(e) {
+                var topBar = document.querySelector('paper-toolbar .top.title');
+                var bottomBar = document.querySelector('paper-toolbar .bottom.title');
+                var ratio = e.detail.y || 0;
+                var bottomFontSize = 12 / 100 * (192 - ratio);
+
+                topBar.style.fontSize = (29 / 100 * (192 - ratio)) + "px";
+                topBar.style.paddingTop = 192 - ratio - e.detail.condensedHeight + "px";
+                bottomBar.style.fontSize = (bottomFontSize < 11 ? 0 : bottomFontSize) + "px";
+            },
+
+            onTranslationSet: function(e) {
+                this.set('dictionary', e.detail);
+            }
+        });
+
+    </script>
+
+</dom-module>

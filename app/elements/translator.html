@@ -1,0 +1,43 @@
+<dom-module id="my-translator">
+
+    <template>
+        <iron-ajax
+            auto
+            url="/properties/translations.json"
+            handle-as="json"
+            on-response="setTranslation"></iron-ajax>
+    </template>
+
+    <script>
+
+        Polymer({
+            is: "my-translator",
+
+            properties: {
+                lang: {
+                    type: String,
+                    value: 'en'
+                },
+            },
+
+            getLang: function() {
+                return this.lang || 'en';
+            },
+
+            setTranslation : function(data) {
+                this.dictionaries = data.detail.response;
+                this.fire('translationSet', this.getTranslation());
+            },
+
+            getTranslation : function() {
+                if (!this.dictionaries)
+                    return null;
+                return this.dictionaries[this.getLang()];
+            }
+
+        });
+
+
+    </script>
+
+</dom-module>

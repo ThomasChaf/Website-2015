@@ -1,0 +1,92 @@
+<dom-module id="my-home-page">
+
+    <style>
+
+        .social {
+            background-color: var(--default-primary-color);
+        }
+
+        .social paper-button {
+            background-color: var(--main-50);
+            color: black;
+            margin: 0 3% 0 3%;
+            --paper-button-ink-color: grey;
+        }
+
+        footer {
+            height: 200px;
+        }
+
+    </style>
+
+    <template>
+
+        <section>
+            <!-- DESCRIPTION -->
+            <p class="description">
+                <span>{{ text.description }}<br>{{ text.sub_description }}</span>
+            </p>
+        </section>
+
+        <!-- SLIDER -->
+        <section>
+            <div class="base-container">
+                <h2>{{ text.worked_with }}</h2>
+
+                <my-carousel class="shadow-z2">
+                    <my-image src="/images/baniereEpitech.jpg" alt="Logos d'epitech" top="30">{{ text.work_epitech }}</my-image>
+                    <my-image src="/images/fruition.png" alt="Logos de fruitions" top="40">{{ text.work_fruition }}</my-image>
+                    <my-image src="/images/humanTalks.jpg" alt="Logo des humans talks" top="28" color="#6C2557">{{ text.work_human_talk }}</my-image>
+                </my-carousel>
+            </div>
+        </section>
+
+        <section class="social">
+            <!-- SOCIAL -->
+            <a href="https://www.facebook.com/thomas.chafiol.1" target="_blank">
+                <paper-button raised>
+                    <i class="fa fa-facebook"></i>
+                </paper-button>
+            </a>
+            <a href="https://twitter.com/ThomasChaf" target="_blank">
+                <paper-button raised>
+                    <i class="fa fa-twitter"></i>
+                </paper-button>
+            </a>
+            <a href="https://www.linkedin.com/profile/view?id=313822159" target="_blank">
+                <paper-button raised>
+                    <i class="fa fa-linkedin"></i>
+                </paper-button>
+            </a>
+        </section>
+
+        <section>
+            <div class="base-container">
+                <h2>{{ text.here_projects }}</h2>
+
+                <my-card class="element w2 shadow-z2" link="raytracer" title="Raytracer" img="rt-scene-victorieuse.jpg">
+                    Moteur d'images de synthèses en utilisant la méthode de raytracing.
+                </my-card>
+
+                <my-card class="element w2 shadow-z2" link="colorpicker" title="Colorpicker" img="colorPicker.png">
+                    Selecteur de couleur par son code hexadecimal.
+                </my-card>
+            </div>
+        </section>
+
+        <footer>
+            <my-bomber>
+                <p>Thomas Chafiol</p>
+                <p>&copy; 2015 personnal website</p>
+            </my-bomber>
+        </footer>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-home-page"
+        });
+    </script>
+
+</dom-module>
