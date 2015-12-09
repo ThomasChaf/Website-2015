@@ -9,6 +9,8 @@ var minifyCss = require('gulp-minify-css');
 var less = require('gulp-less');
 var injectSelf = require('gulp-inject-self');
 var rename = require('gulp-rename');
+var url = require('url');
+var fs = require('fs');
 
 gulp.task('buildStyles', function() {
     gulp
@@ -77,7 +79,19 @@ gulp.task('serve', function() {
     browserSync({
         port: 5000,
         server: {
-            baseDir: ['dist']
+            baseDir: ['dist'],
+            middleware: function(req, res, next) {
+                var fileName = url.parse(req.url).path;
+
+                var fileExists = fs.existsSync('./app/elements/pages' + fileName + '.html');
+
+                console.log(fileName + ' ' + fileExists);
+
+                if (fileExists) {
+                    req.url = '/index.html';
+                }
+                return next();
+            }
         }
     });
     gulp.watch(['app/**/*.html', 'app/index.html', 'app/**/*.less', 'app/**/*.js'], ['build', reload]);
