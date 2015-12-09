@@ -56,12 +56,12 @@
                         <span>Home</span>
                     </a>
 
-                    <a data-route="contact" href="/about" on-click="onDataRouteClick">
+                    <a data-route="about" href="/about" on-click="onDataRouteClick">
                         <iron-icon icon="social:person"></iron-icon>
                         <span>About</span>
                     </a>
 
-                    <a data-route="users" href="/project" on-click="onDataRouteClick">
+                    <a data-route="project" href="/project" on-click="onDataRouteClick">
                         <iron-icon icon="device:dvr"></iron-icon>
                         <span>Project</span>
                     </a>
@@ -93,12 +93,12 @@
                             <my-home-page text="{{ dictionary }}"></my-home-page>
                         </div>
 
-                        <div data-route="project">
-                            <my-project-page></my-project-page>
+                        <div data-route="about">
+                            <my-about-page text="{{ dictionary }}"></my-about-page>
                         </div>
 
-                        <div data-route="about">
-                            <my-about-page></my-about-page>
+                        <div data-route="project">
+                            <my-project-page></my-project-page>
                         </div>
 
                     </iron-pages>

@@ -1,0 +1,89 @@
+<dom-module id="my-about-page">
+
+    <style is="custom-style">
+
+        :host p.element {
+            background-color: var(--main-50);
+        }
+
+    </style>
+
+    <template>
+        <section class="base-container">
+            <p class="element shadow-z2">
+                {{ text.resume1 }}
+                <br><br>
+                {{ text.resume2 }}
+                <br><br>
+                {{ text.resume3 }}
+            </p>
+        </section>
+        <hr>
+        <section class="cv">
+            <a href="https://docs.google.com/document/d/1Qsd-qqYeOvV9_5eAwHxMfJCa2-Cblw9MQiCl2Psxt1E" target="_blank">
+                <i class="fa fa-download"></i>
+                {{ text.overview }}
+            </a>
+        </section>
+        <hr class="container">
+        <section class="competences container">
+            <h2>{{ text.skills }}</h2>
+            <div>
+                <tc-round class="col-md-2" skill="90">C</tc-round>
+                <tc-round class="col-md-2" skill="70">angularJs</tc-round>
+                <tc-round class="col-md-2" skill="70">python</tc-round>
+                <tc-round class="col-md-2" skill="50">C++</tc-round>
+                <tc-round class="col-md-2" skill="30">Ocaml</tc-round>
+            </div>
+        </section>
+        <hr>
+        <section class="competences">
+            <h2>{{ tr("about_me") }}</h2>
+            <div>
+                <div class="right">
+                    <div>
+                        <h3>{{ tr("name") }}</h3>
+                        <p>Thomas Chafiol</p>
+                    </div>
+                    <div>
+                        <h3>{{ tr("birthday") }}</h3>
+                        <p>02 / 03 / 1994</p>
+                    </div>
+                </div>
+                <figure class="self-picture container">
+                    <paper-shadow>
+                        <img src="/images/thomas.jpg" width="230px"/>
+                    </paper-shadow>
+                </figure>
+                <div>
+                    <div>
+                        <h3>{{ tr("residence") }}</h3>
+                        <p>Montpellier</p>
+                    </div>
+                    <div>
+                        <h3>{{ tr("hobbies") }}</h3>
+                        <p>{{ tr("sports") }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+        <section class="competences">
+            <h2>{{ tr("other_skills") }}</h2>
+            <div>
+                <tc-round skill="80" >Html5 / CSS3</tc-round>
+                <tc-round skill="100" >MVC Frameworks</tc-round>
+                <tc-round skill="80" >Système unix</tc-round>
+                <tc-round skill="60" >Qt</tc-round>
+            </div>
+        </section>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-about-page"
+        });
+    </script>
+
+</dom-module>
