@@ -2,14 +2,36 @@
 
     <style is="custom-style">
 
-        paper-drawer-panel {
+        :host paper-drawer-panel {
             --paper-drawer-panel-main-container: {
                 background-color: var(--main-100);
             };
         }
 
-        .bottom {
+        :host .bottom {
             padding-left: 10px;
+        }
+
+        :host paper-menu {
+            margin-top: 10px;
+        }
+
+        :host paper-menu a {
+            width: 100%;
+            display: block;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        :host paper-menu a.iron-selected {
+            color: var(--my-accent-color);
+        }
+
+        :host paper-menu span {
+            vertical-align: sub;
+            margin-left: 10px;
         }
 
     </style>
@@ -17,8 +39,6 @@
     <template>
 
         <my-translator tr={{trans}}></my-translator>
-
-        {{ trans.en.home }}
 
         <paper-drawer-panel id="paperDrawerPanel" responsive-width="4000px">
             <!-- Drawer Scroll Header Panel -->
@@ -36,14 +56,14 @@
                         <span>Home</span>
                     </a>
 
-                    <a data-route="users" href="/project" on-click="onDataRouteClick">
-                        <iron-icon icon="info"></iron-icon>
-                        <span>Project</span>
+                    <a data-route="contact" href="/about" on-click="onDataRouteClick">
+                        <iron-icon icon="social:person"></iron-icon>
+                        <span>About</span>
                     </a>
 
-                    <a data-route="contact" href="/about" on-click="onDataRouteClick">
-                        <iron-icon icon="mail"></iron-icon>
-                        <span>About</span>
+                    <a data-route="users" href="/project" on-click="onDataRouteClick">
+                        <iron-icon icon="device:dvr"></iron-icon>
+                        <span>Project</span>
                     </a>
                 </paper-menu>
             </paper-scroll-header-panel>
