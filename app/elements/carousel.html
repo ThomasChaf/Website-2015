@@ -36,8 +36,36 @@
             position: relative;
             margin: 0;
             border-radius: 0;
-            background-color: var(--accent-color);
             color: white;
+        }
+
+        @media only screen and (max-width : 768px) {
+            :host .arrow {
+                background-color: rgba(167, 111, 157, 0.29);
+                position: absolute;
+            }
+
+            :host .arrow.beforeLeft {
+                display: none;
+            }
+
+            :host .arrow.afterLeft {
+                display: inline;
+            }
+        }
+
+        @media only screen and (min-width : 768px) {
+            :host .arrow {
+                background-color: var(--accent-color);
+            }
+
+            :host .arrow.beforeLeft {
+                display: inline;
+            }
+
+            :host .arrow.afterLeft {
+                display: none;
+            }
         }
 
         :host .arrow i {
@@ -46,22 +74,30 @@
 
         :host .arrow.left {
             float: left;
+            left: 0;
+            top: 0;
         }
 
         :host .arrow.right {
             float: right;
+            right: 0;
+            top: 0;
         }
     </style>
 
     <template>
 
-        <paper-button class="arrow left" on-click="prev">
+        <paper-button class="arrow left beforeLeft" on-click="prev">
             <i class="fa fa-angle-left"></i>
         </paper-button>
 
         <div class="carouselContainer">
             <content></content>
         </div>
+
+        <paper-button class="arrow left afterLeft" on-click="prev">
+            <i class="fa fa-angle-left"></i>
+        </paper-button>
 
         <paper-button class="arrow right" on-click="next">
             <i class="fa fa-angle-right"></i>

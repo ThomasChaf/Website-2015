@@ -21,11 +21,21 @@ section {
             &.w1 {
                 width: 100%;
             }
-            &.w2 {
-                width: calc(~"50% - 3px - "@space-between-w2-container / 2);
+            @media only screen and (max-width : 768px) {
+                &.w2 {
+                    width: 100%;
+                }
+                &.w2:not(:last-of-type) {
+                    margin-bottom: @space-between-w2-container;
+                }
             }
-            &.w2:not(:last-of-type) {
-                margin-right: @space-between-w2-container;
+            @media only screen and (min-width : 768px) {
+                &.w2 {
+                    width: calc(~"50% - 3px - "@space-between-w2-container / 2);
+                }
+                &.w2:not(:last-of-type) {
+                    margin-right: @space-between-w2-container;
+                }
             }
         }
     }
