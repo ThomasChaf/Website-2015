@@ -69,7 +69,7 @@
             </paper-scroll-header-panel>
 
             <!-- Main Area -->
-            <paper-scroll-header-panel main condenses keep-condensed-header header-height="500px">
+            <paper-scroll-header-panel main condenses keep-condensed-header>
 
                 <!-- Main Toolbar -->
                 <paper-toolbar id="mainToolbar" class="tall">
@@ -113,35 +113,35 @@
         Polymer({
             is: "my-portfolio",
 
-            behaviors: [
-                Polymer.IronResizableBehavior
-            ],
-
             properties: {
                 dictionary: Object
             },
 
             listeners: {
-                'paper-header-transform': 'resizeHeader',
-                'translationSet' : 'onTranslationSet',
-                'iron-resize': '_onResize'
+                'paper-header-transform': '_resizeHeader',
+                'translationSet' : 'onTranslationSet'
             },
 
             ready: function() {
                 document.querySelector('paper-drawer-panel').closeDrawer();
+                this._resizeHeader({
+                    detail: {
+                        y: 0,
+                        height: 192,
+                        condensedHeight: 64
+                    }
+                });
             },
 
-            _onResize: function(e) {
-            },
-
-            resizeHeader: function(e) {
+            _resizeHeader: function(e) {
                 var topBar = document.querySelector('paper-toolbar .top.title');
                 var bottomBar = document.querySelector('paper-toolbar .bottom.title');
-                var ratio = e.detail.y || 0;
-                var bottomFontSize = 12 / 100 * (192 - ratio);
+                var ratio = e.detail.y;
+                var height = e.detail.height;
+                var bottomFontSize = 12 / 100 * (height - ratio);
 
-                topBar.style.fontSize = (29 / 100 * (192 - ratio)) + "px";
-                topBar.style.paddingTop = 192 - ratio - e.detail.condensedHeight + "px";
+                topBar.style.fontSize = (29 / 100 * (height - ratio)) + "px";
+                topBar.style.paddingTop = height - ratio - e.detail.condensedHeight + "px";
                 bottomBar.style.fontSize = (bottomFontSize < 11 ? 0 : bottomFontSize) + "px";
             },
 
