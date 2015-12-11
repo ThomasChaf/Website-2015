@@ -1,7 +1,7 @@
 @section-padding : 10px;
 @margin-container : 100px;
 @size-container : 950px;
-@space-between-container : 5vw;
+@space-between-w2-container : 5vw;
 
 section {
     padding: @section-padding;
@@ -15,21 +15,31 @@ section {
         text-align: left;
         width: calc(~"100% - "@margin-container);
         .element {
+            .text {
+                padding: 20px;
+            }
             &.w1 {
                 width: 100%;
             }
             &.w2 {
-                width: calc(~"50% - 3px - "@space-between-container / 2);
+                width: calc(~"50% - 3px - "@space-between-w2-container / 2);
             }
-            &:not(:last-of-type) {
-                margin-right: @space-between-container;
+            &.w2:not(:last-of-type) {
+                margin-right: @space-between-w2-container;
             }
         }
     }
 }
 
+@media only screen and (max-width : 450px) {
 
-@media only screen and (max-width : 1070) {
+}
+
+@media only screen and (min-width : 450px) and (max-width : 768px) {
+
+}
+
+@media only screen and (max-width : 1070px) {
 
 }
 

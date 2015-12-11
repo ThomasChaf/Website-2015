@@ -82,10 +82,7 @@ gulp.task('serve', function() {
             baseDir: ['dist'],
             middleware: function(req, res, next) {
                 var fileName = url.parse(req.url).path;
-
                 var fileExists = fs.existsSync('./app/elements/pages' + fileName + '.html');
-
-                console.log(fileName + ' ' + fileExists);
 
                 if (fileExists) {
                     req.url = '/index.html';

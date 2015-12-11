@@ -1,0 +1,62 @@
+<dom-module id="my-round">
+
+    <style>
+
+        :host p {
+            text-align: center;
+            margin: 0;
+        }
+
+        :host .mainContainer {
+            padding: 10px;
+        }
+
+        :host canvas {
+            width: 100%;
+            padding: 0;
+        }
+
+        :host .descriptionContent {
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        :host .percent {
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+    </style>
+
+    <template>
+        <div class="mainContainer">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="mainContainer mainColor">
+            <p class="descriptionContent">
+                <content></content>
+            </p>
+            <p class="percent">{{ skill }}%</p>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-round",
+
+            properties: {
+                skill: Number
+            },
+
+            ready: function () {
+                ctx = this.$.canvas.getContext('2d')
+                ctx.beginPath()
+                ctx.arc(150, 75, 70, 0, 2 * Math.PI * this.skill / 100);
+                ctx.lineWidth = 7;
+                ctx.strokeStyle = '#334465';
+                ctx.stroke();
+            }
+        });
+    </script>
+
+</dom-module>
