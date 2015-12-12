@@ -11,6 +11,7 @@
     "neon-animation": "PolymerElements/neon-animation#~1.0.8",
     "paper-button": "PolymerElements/paper-button#~1.0.8",
     "font-awesome": "FortAwesome/Font-Awesome#~4.4.0",
-    "iron-ajax": "PolymerElements/iron-ajax#~1.1.1"
+    "iron-ajax": "PolymerElements/iron-ajax#~1.1.1",
+    "paper-input": "PolymerElements/paper-input#~1.1.3"
   }
 }

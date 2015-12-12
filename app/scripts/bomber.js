@@ -374,8 +374,8 @@ window.Bomber = {
         return self;
     },
 
-    create : function(canvas, endGame) {
-        return new Bomber.Object(canvas, endGame);
+    create : function(selector) {
+        return new Bomber.Object(selector);
     }
 
 };

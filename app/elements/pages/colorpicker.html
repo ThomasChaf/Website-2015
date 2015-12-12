@@ -1,0 +1,97 @@
+<dom-module id="my-colorpicker-page">
+
+    <style>
+
+        :host .element {
+            display: inline-block;
+            border: 2px solid black;
+            vertical-align: top;
+        }
+
+        :host .rightContainer {
+            display: inline-block;
+        }
+
+    </style>
+
+    <template>
+
+        <section>
+
+            <h2 class="section-title">A simple colorpicker</h2>
+
+            <div class="element shadow-z2">
+                <canvas id="picker" width="500px" height="480px" on-click="onpicker"></canvas>
+            </div>
+
+            <div class="element shadow-z2">
+                <canvas id="pixmap" width="150px" height="480px" on-click="onpixmap"></canvas>
+            </div>
+
+            <div class="rightContainer">
+
+                <div class="element shadow-z2">
+                    <canvas id="ecolor"></canvas>
+                </div>
+
+                <div id="inputs">
+                    <div id="hexa">
+                        <paper-input id="hh" label="Hexa" on-change="onhexachange"></paper-input>
+                    </div>
+                    <div id="red">
+                        <paper-input id="rr" label="Red" on-change="onrgbchange"></paper-input>
+                    </div>
+                    <div id="green">
+                        <paper-input id="gg" label="Green" on-change="onrgbchange"></paper-input>
+                    </div>
+                    <div id="blue">
+                        <paper-input id="bb" label="Blue" on-change="onrgbchange"></paper-input>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </template>
+
+    <script src="/scripts/colorpicker.js"></script>
+
+    <script>
+        Polymer({
+            is: "my-colorpicker-page",
+
+            ready: function() {
+                this.colorpicker = Colorpicker.create(this.$);
+                this.colorpicker.setColor(255, 0, 0);
+            },
+
+            onpixmap: function(e) {
+                var color = this.colorpicker.imagePixmap.getRGBPixel(e.offsetX, e.offsetY);
+
+                this.colorpicker.setColor(color[0], color[1], color[2]);
+            },
+
+            onpicker: function(e) {
+                var color = this.colorpicker.imagePicker.getRGBPixel(e.offsetX, e.offsetY);
+
+                this.colorpicker.setColor(color[0], color[1], color[2], true);
+            },
+
+            onrgbchange: function(e) {
+                this.colorpicker.setColor(
+                    this.$.rr.value,
+                    this.$.gg.value,
+                    this.$.bb.value
+                );
+            },
+
+            onhexachange: function() {
+                var color = this.colorpicker.colorInRgb(this.$.hh.value);
+
+                this.colorpicker.setColor(color[0], color[1], color[2]);
+            }
+        });
+    </script>
+
+</dom-module>

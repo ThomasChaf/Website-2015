@@ -22,6 +22,10 @@ window.addEventListener('WebComponentsReady', function() {
         app.route = 'about';
     });
 
+    page('/colorpicker', scrollToTop, function() {
+        app.route = 'colorpicker';
+    });
+
     // add #! before urls
     page({
         hashbang: false
