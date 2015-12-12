@@ -40,6 +40,9 @@ gulp.task('index', function() {
     gulp
     .src('app/index.html')
     .pipe(gulp.dest('dist/'));
+    gulp
+    .src('app/favicon.ico')
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('buildElements', function() {
