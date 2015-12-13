@@ -37,6 +37,47 @@ section {
                     margin-right: @space-between-w2-container;
                 }
             }
+
+            @media only screen and (max-width : 450px) {
+                &.w3 {
+                    width: 99%;
+                    margin-bottom: 20px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                }
+            }
+
+            @media only screen and (min-width : 450px) and (max-width : 768px) {
+                &.w3 {
+                    width: 99%;
+                    max-width: 250px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                }
+
+                &.w3:nth-of-type(2n+0) {
+                    margin-bottom: 20px;
+                }
+            }
+
+            @media only screen and (min-width : 768px) {
+                &.w3 {
+                    width: 28.9%;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+
+                &.w3:nth-of-type(3n+0) {
+                    margin-bottom: 20px;
+                }
+
+                &.w3:not(:nth-of-type(3n+0)) {
+                    margin-right: 6%;
+                }
+            }
+
         }
     }
 }

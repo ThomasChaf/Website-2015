@@ -26,6 +26,10 @@ window.addEventListener('WebComponentsReady', function() {
         app.route = 'colorpicker';
     });
 
+    page('/raytracer', scrollToTop, function() {
+        app.route = 'raytracer';
+    });
+
     // add #! before urls
     page({
         hashbang: false

@@ -1,0 +1,69 @@
+<dom-module id="my-raytracer-page">
+
+    <style>
+
+    </style>
+
+    <template>
+
+        <section>
+            <div class="base-container">
+                <my-carousel>
+                    <my-image src="/images/rt-scene-victorieuse.jpg" alt="Scene qui termina deuxième du concour epitech boulon"></my-image>
+                    <my-image src="/images/rt-scene-chateau.jpg" alt="Scene de chateaux"></my-image>
+                    <my-image src="/images/rt-scene-textures.jpg" alt="Scene avec textures"></my-image>
+                </my-carousel>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="title">Raytracer</h2>
+            <p>Projet réalisé en deux mois en groupe de 5</p>
+            <p>Le raytracing est une technique qui permet par le calcul de dessiner des images de synthèses réalistes.</p>
+            <div class="base-container">
+                <div class="element w3">
+                    <h2>Objets raytracés</h2>
+                    <ul>
+                        <li>Sphère</li>
+                        <li>Cylindre</li>
+                        <li>Cone</li>
+                        <li>Plan</li>
+                        <li>Tore</li>
+                        <li>Cube trouée</li>
+                        <li>Objets négatifs</li>
+                    </ul>
+                </div>
+                <div class="element w3">
+                    <h2>Effets appliqués</h2>
+                    <ul>
+                        <li>Ombres</li>
+                        <li>Réflexion</li>
+                        <li>Transparence</li>
+                        <li>Lumière diffuse</li>
+                        <li>Lumière speculaire</li>
+                        <li>Textures</li>
+                    </ul>
+                </div>
+                <div class="element w3">
+                    <h2>Autour du projet</h2>
+                    <ul>
+                        <li>Calcul d'image en cluster</li>
+                        <li>Importation d'images pour les textures</li>
+                        <li>Exportation d'images</li>
+                        <li>Cell-Shading</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <my-footer></my-footer>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-raytracer-page"
+        });
+    </script>
+
+</dom-module>

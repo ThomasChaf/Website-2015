@@ -72,41 +72,13 @@
 
         @media screen and (max-width : 450px) {
             :host .w3 {
-                width: 99%;
                 text-align: left;
-                margin-bottom: 20px;
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
             }
         }
 
         @media only screen and (min-width : 450px) and (max-width : 768px) {
             :host .w3 {
-                width: 99%;
-                max-width: 250px;
                 text-align: center;
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
-            }
-
-            :host .w3:nth-of-type(2n+0) {
-                margin-bottom: 20px;
-            }
-        }
-
-        @media screen and (min-width : 768px) {
-            :host .w3 {
-                width: 28.9%;
-            }
-
-            :host .w3:nth-of-type(3n+0) {
-                margin-bottom: 20px;
-            }
-
-            :host .w3:not(:nth-of-type(3n+0)) {
-                margin-right: 6%;
             }
         }
 
@@ -208,7 +180,7 @@
                         <hr>
                     </div>
                     <div class="text">
-                        <div class="w3 right">
+                        <div class="element w3 right">
                             <div>
                                 <h3>{{ text.name }}</h3>
                                 <p>Thomas Chafiol</p>
@@ -218,10 +190,10 @@
                                 <p>02 / 03 / 1994</p>
                             </div>
                         </div>
-                        <div class="w3">
+                        <div class="element w3">
                             <img src="/images/thomas.jpg" width="100%"/>
                         </div>
-                        <div class="w3">
+                        <div class="element w3">
                             <div>
                                 <h3>{{ text.residence }}</h3>
                                 <p>Montpellier</p>
