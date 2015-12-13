@@ -30,6 +30,10 @@ window.addEventListener('WebComponentsReady', function() {
         app.route = 'raytracer';
     });
 
+    page('/42sh', scrollToTop, function() {
+        app.route = '42sh';
+    });
+
     // add #! before urls
     page({
         hashbang: false
