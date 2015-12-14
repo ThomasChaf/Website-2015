@@ -2,6 +2,24 @@
 
     <style>
 
+        :host .spading {
+            padding: 5px;
+        }
+
+        :host .descriptionTitleContainer {
+            padding: 5px;
+        }
+
+        :host .descriptionTitleContainer h3 {
+            padding-left: 10px;
+            vertical-align: sub;
+            display: inline;
+        }
+
+        :host .white {
+            background-color: var(--main-50);
+        }
+
     </style>
 
     <template>
@@ -52,6 +70,28 @@
                         <li>Exportation d'images</li>
                         <li>Cell-Shading</li>
                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Usage</h2>
+
+            <div class="base-container">
+                <div class="element white shadow-z2">
+                    <div class="text">
+                        <div class="descriptionTitleContainer">
+                            <iron-icon icon="icons:info-outline"></iron-icon>
+                            <h3>Live rendering with usage of cluster</h3>
+                        </div>
+                        <hr>
+                        <p>
+                            Rendering without cluster / Rendering using the cluster
+                        </p>
+                    </div>
+                    <div class="element spading">
+                        <iframe width="100%" height="350hw" src="https://www.youtube.com/embed/3ZwIGvjv_7s" frameborder="0" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </section>
