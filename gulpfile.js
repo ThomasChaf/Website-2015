@@ -48,9 +48,9 @@ gulp.task('index', function() {
 gulp.task('buildElements', function() {
     gulp
     .src([
-        'app/elements/**/*.html',
-        'app/elements/**/*.css',
-        'app/elements/**/*.js'
+        'app/modules/**/*.html',
+        'app/modules/**/*.css',
+        'app/modules/**/*.js'
     ])
     .pipe(gulp.dest('dist/elements'));
 });
@@ -85,7 +85,7 @@ gulp.task('serve', function() {
             baseDir: ['dist'],
             middleware: function(req, res, next) {
                 var fileName = url.parse(req.url).path;
-                var fileExists = fs.existsSync('./app/elements/pages' + fileName + '.html');
+                var fileExists = fs.existsSync('./app/modules/pages' + fileName + '.html');
 
                 if (fileExists) {
                     req.url = '/index.html';
