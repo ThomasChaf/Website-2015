@@ -1,1 +1,137 @@
-<h1>Go Raytracer</h1>
+<dom-module id="my-go-raytracer-page">
+
+    <style>
+        paper-slider.blue {
+            --paper-slider-knob-color: var(--paper-light-blue-500);
+            --paper-slider-active-color: var(--paper-light-blue-500);
+        }
+        paper-slider.red {
+            --paper-slider-knob-color: var(--paper-red-500);
+            --paper-slider-active-color: var(--paper-red-500);
+        }
+        paper-slider.green {
+            --paper-slider-knob-color: var(--paper-green-500);
+            --paper-slider-active-color: var(--paper-green-500);
+        }
+        paper-slider.alpha {
+            --paper-slider-knob-color: var(--paper-grey-500);
+            --paper-slider-active-color: var(--paper-grey-500);
+        }
+    </style>
+
+    <template>
+
+        <h1>Go raytracer</h1>
+
+        <section>
+            <div class="base-container">
+
+                <form is="iron-form" id="form" method="post" action="http://localhost:4000/scene">
+                    <input type="hidden" name="properties.width" value="{{ width }}"/>
+                    <input type="hidden" name="properties.height" value="{{ height }}"/>
+                    <input type="hidden" name="properties.nbObj" value="{{ objects.length }}"/>
+
+                    <paper-input name="name" label="name"></paper-input>
+
+                    <template is="dom-repeat" items="{{objects}}">
+                        <div class="element w3">
+                            <h3>Object</h3>
+                            <div>Type: <span>{{item.type}}</span></div>
+                            <div>Size:
+                                <paper-slider name="objects.{{index}}.Size" min="10" max="200" value="{{item.size}}"></paper-slider>
+                            </div>
+                            <div>X:
+                                <paper-input name="objects.{{index}}.X" type="Number" auto-validate value="{{item.x}}">{{item.x}}</paper-input>
+                            </div>
+                            <div>Y:
+                                <paper-input name="objects.{{index}}.Y" type="Number" auto-validate value="{{item.y}}">{{item.y}}</paper-input>
+                            </div>
+                            <div>Z:
+                                <paper-input name="objects.{{index}}.Z" type="Number" auto-validate value="{{item.z}}">{{item.z}}</paper-input>
+                            </div>
+
+                            <div>
+                                <div>R</div>
+                                <paper-slider name="objects.{{index}}.r" class="red" value="{{item.r}}" max="255" editable></paper-slider>
+                            </div>
+                            <div>
+                                <div>G</div>
+                                <paper-slider name="objects.{{index}}.g" class="green" value="{{item.g}}" max="255" editable></paper-slider>
+                            </div>
+                            <div>
+                                <div>B</div>
+                                <paper-slider name="objects.{{index}}.b" class="blue" value="{{item.b}}" max="255" editable></paper-slider>
+                            </div>
+                            <!-- <div>
+                                <div>A</div>
+                                <paper-slider name="objects.{{index}}.A" class="alpha" value="{{item.a}}" max="255" editable></paper-slider>
+                            </div> -->
+                        </div>
+                    </template>
+
+                    <paper-button raised on-click="resolve">Submit</paper-button>
+                </form>
+
+                <paper-button raised on-click="addObject"><iron-icon icon="icons:add"></iron-icon></paper-button>
+
+            <div>
+        </section>
+
+        <section>
+
+            <canvas id="mainCanvas" width="{{ width }}" height="{{ height }}"></canvas>
+
+        </section>
+
+    </template>
+
+    <script src="/scripts/raytracer.js"></script>
+
+    <script>
+
+        Polymer({
+            is: "my-go-raytracer-page",
+
+            properties: {
+
+                url: {
+                    type: String,
+                    value: 'ws://localhost:4000/websocket'
+                },
+
+                width: {
+                    type: Number,
+                    value: 500
+                },
+
+                height: {
+                    type: Number,
+                    value: 500
+                },
+
+                objects: {
+                    type: Array,
+                    value: []
+                }
+            },
+
+            ready: function () {
+                this.rt = Raytracer.create(this.url, this.$)
+            },
+
+            resolve: function() {
+                this.rt.resolve()
+            },
+
+            addObject: function() {
+                this.push('objects', {
+                    type: 'Sphere',
+                    size: '30',
+                    x: '0', y: '0', z: '0',
+                    r: '255', g: '0', b: '0', a: '0'
+                });
+            }
+        });
+    </script>
+
+</dom-module>

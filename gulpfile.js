@@ -1,16 +1,17 @@
 'use strict';
 
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
 // var $$ = require('gulp-load-plugins')();
-var reload = browserSync.reload;
-var concat = require('gulp-concat');
-var minifyCss = require('gulp-minify-css');
-var less = require('gulp-less');
-var injectSelf = require('gulp-inject-self');
-var rename = require('gulp-rename');
-var url = require('url');
-var fs = require('fs');
+var gulp        = require('gulp');
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
+var concat      = require('gulp-concat');
+var minifyCss   = require('gulp-minify-css');
+var less        = require('gulp-less');
+var injectSelf  = require('gulp-inject-self');
+var rename      = require('gulp-rename');
+var url         = require('url');
+var fs          = require('fs');
+var changeCase  = require('change-case');
 
 gulp.task('buildStyles', function() {
     gulp
@@ -63,7 +64,12 @@ gulp.task('buildImages', function() {
 
 gulp.task('buildScripts', function() {
     gulp
-    .src(['app/scripts/**/*.js'])
+    .src(['app/scripts/*.js'])
+    .pipe(gulp.dest('dist/scripts'));
+
+    gulp
+    .src(['app/scripts/canvas.js', 'app/scripts/raytracer/index.js', 'app/scripts/raytracer/*.js'])
+    .pipe(concat('raytracer.js'))
     .pipe(gulp.dest('dist/scripts'));
     // .pipe($$.uglify({preserveComments: 'some'}))
 });
@@ -85,7 +91,7 @@ gulp.task('serve', function() {
             baseDir: ['dist'],
             middleware: function(req, res, next) {
                 var fileName = url.parse(req.url).path;
-                var fileExists = fs.existsSync('./app/modules/pages' + fileName + '.html');
+                var fileExists = fs.existsSync('./app/modules/pages/' + changeCase.camelCase(fileName) + '.html');
 
                 if (fileExists) {
                     req.url = '/index.html';
