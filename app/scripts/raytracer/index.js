@@ -1,30 +1,36 @@
 'use strict';
 
 /*jslint bitwise: true */
-/* global Raytracer */
+/* global Raytracer, AjaxForm */
 window.Raytracer = {
 
-    Object: function(url, selector) {
+    Object: function(selector) {
         var self = this;
-        self.drawer = new Raytracer.Drawer(selector.mainCanvas);
         self.selector = selector;
+        self.drawer = new Raytracer.Drawer(selector.mainCanvas);
         self.websocket = null;
 
-        self.resolve = function() {
-            var send = false;
-            self.selector.form.submit();
-            self.selector.form.addEventListener('iron-form-response', function() {
-                if (send === false) {
-                    self.websocket = new Raytracer.Websocket(url, {
-                        onmessage : self.onmessage,
-                        onclose : self.onclose
-                    });
-                }
-                send = true;
+        self.init = function() {
+            self.form = AjaxForm.create('http://localhost:4000/scene', self.onformresponse, self.onformerror);
+        };
+
+        self.resolve = function(scene) {
+            self.form.submit(scene);
+        };
+
+        self.onformresponse = function() {
+            self.websocket = new Raytracer.Websocket('ws://localhost:4000/websocket', {
+                onmessage : self.onwsmessage,
+                onclose : self.onwsclose
             });
         };
 
-        self.onmessage = function(data) {
+        self.onformerror = function(result) {
+            console.log('Error server side:');
+            console.log(result.detail.error);
+        };
+
+        self.onwsmessage = function(data) {
             console.log(data);
             for (var j = 0; j < data.length; j += 7) {
                 var index = 0;
@@ -36,9 +42,11 @@ window.Raytracer = {
             }
             self.drawer.draw();
         };
+
+        self.init();
     },
 
-    create: function(url, selector) {
-        return new window.Raytracer.Object(url, selector);
+    create: function(selector) {
+        return new window.Raytracer.Object(selector);
     }
 };

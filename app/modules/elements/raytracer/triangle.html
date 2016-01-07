@@ -1,0 +1,100 @@
+<dom-module id="my-triangle">
+
+    <style>
+        paper-slider {
+            width: 100%;
+        }
+
+        paper-slider.blue {
+            --paper-slider-knob-color: var(--paper-light-blue-500);
+            --paper-slider-active-color: var(--paper-light-blue-500);
+        }
+        paper-slider.red {
+            --paper-slider-knob-color: var(--paper-red-500);
+            --paper-slider-active-color: var(--paper-red-500);
+        }
+        paper-slider.green {
+            --paper-slider-knob-color: var(--paper-green-500);
+            --paper-slider-active-color: var(--paper-green-500);
+        }
+        paper-slider.alpha {
+            --paper-slider-knob-color: var(--paper-grey-500);
+            --paper-slider-active-color: var(--paper-grey-500);
+        }
+        .line {
+            width: 100%;
+        }
+        .line .tier {
+            width: 32%;
+            display: inline-block;
+        }
+    </style>
+
+    <template>
+        <div class="element w3">
+            <h3>Object</h3>
+            <div>Type: Triangles</div>
+
+                <div class="line">
+                    <div class="tier">X:
+                        <paper-input type="Number" auto-validate value="{{data.P1.0}}">{{data.P1.0}}</paper-input>
+                    </div>
+                    <div class="tier">Y:
+                        <paper-input type="Number" auto-validate value="{{data.P1.1}}">{{data.P1.1}}</paper-input>
+                    </div>
+                    <div class="tier">Z:
+                        <paper-input type="Number" auto-validate value="{{data.P1.2}}">{{data.P1.2}}</paper-input>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="tier">X:
+                        <paper-input type="Number" auto-validate value="{{data.P2.0}}">{{data.P2.0}}</paper-input>
+                    </div>
+                    <div class="tier">Y:
+                        <paper-input type="Number" auto-validate value="{{data.P2.1}}">{{data.P2.1}}</paper-input>
+                    </div>
+                    <div class="tier">Z:
+                        <paper-input type="Number" auto-validate value="{{data.P2.2}}">{{data.P2.2}}</paper-input>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="tier">X:
+                        <paper-input type="Number" auto-validate value="{{data.P3.0}}">{{data.P3.0}}</paper-input>
+                    </div>
+                    <div class="tier">Y:
+                        <paper-input type="Number" auto-validate value="{{data.P3.1}}">{{data.P3.1}}</paper-input>
+                    </div>
+                    <div class="tier">Z:
+                        <paper-input type="Number" auto-validate value="{{data.P3.2}}">{{data.P3.2}}</paper-input>
+                    </div>
+                </div>
+
+            <div>
+                <div>R</div>
+                <paper-slider class="red" value="{{data.Color.0}}" max="255" editable></paper-slider>
+            </div>
+            <div>
+                <div>G</div>
+                <paper-slider class="green" value="{{data.Color.1}}" max="255" editable></paper-slider>
+            </div>
+            <div>
+                <div>B</div>
+                <paper-slider class="blue" value="{{data.Color.2}}" max="255" editable></paper-slider>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-triangle",
+
+            properties: {
+                data: Object,
+                id: Number
+            }
+        });
+    </script>
+
+</dom-module>

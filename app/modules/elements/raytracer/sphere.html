@@ -1,0 +1,68 @@
+<dom-module id="my-sphere">
+
+    <style>
+        paper-slider {
+            width: 100%;
+        }
+
+        paper-slider.blue {
+            --paper-slider-knob-color: var(--paper-light-blue-500);
+            --paper-slider-active-color: var(--paper-light-blue-500);
+        }
+        paper-slider.red {
+            --paper-slider-knob-color: var(--paper-red-500);
+            --paper-slider-active-color: var(--paper-red-500);
+        }
+        paper-slider.green {
+            --paper-slider-knob-color: var(--paper-green-500);
+            --paper-slider-active-color: var(--paper-green-500);
+        }
+        paper-slider.alpha {
+            --paper-slider-knob-color: var(--paper-grey-500);
+            --paper-slider-active-color: var(--paper-grey-500);
+        }
+    </style>
+
+    <template>
+        <div class="element w3">
+            <h3>Object</h3>
+            <div>Type: Sphere</div>
+            <div>Size:
+                <paper-slider min="10" max="200" value="{{data.Size}}"></paper-slider>
+            </div>
+            <div>X:
+                <paper-input type="Number" auto-validate value="{{data.X}}">{{data.X}}</paper-input>
+            </div>
+            <div>Y:
+                <paper-input type="Number" auto-validate value="{{data.Y}}">{{data.Y}}</paper-input>
+            </div>
+            <div>Z:
+                <paper-input type="Number" auto-validate value="{{data.Z}}">{{data.Z}}</paper-input>
+            </div>
+
+            <div>
+                <div>R</div>
+                <paper-slider class="red" value="{{data.Color.0}}" max="255" editable></paper-slider>
+            </div>
+            <div>
+                <div>G</div>
+                <paper-slider class="green" value="{{data.Color.1}}" max="255" editable></paper-slider>
+            </div>
+            <div>
+                <div>B</div>
+                <paper-slider class="blue" value="{{data.Color.2}}" max="255" editable></paper-slider>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-sphere",
+
+            properties: {
+                data: Object
+            }
+        });
+    </script>
+
+</dom-module>
