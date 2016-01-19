@@ -35,6 +35,9 @@ gulp.task('buildProperties', function() {
     gulp
     .src('app/properties/*.json')
     .pipe(gulp.dest('dist/properties/'));
+    gulp
+    .src('app/properties/*.obj')
+    .pipe(gulp.dest('dist/properties/'));
 });
 
 gulp.task('index', function() {

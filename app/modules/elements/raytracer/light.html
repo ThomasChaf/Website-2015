@@ -1,0 +1,57 @@
+<dom-module id="my-light">
+
+    <template>
+        <div class="element w3">
+            <h3>Light</h3>
+
+            <div class="line">
+                <div class="tier">X:
+                    <paper-input type="Number" auto-validate value="{{data.Position.0}}">{{data.Position.0}}</paper-input>
+                </div>
+                <div class="tier">Y:
+                    <paper-input type="Number" auto-validate value="{{data.Position.1}}">{{data.Position.1}}</paper-input>
+                </div>
+                <div class="tier">Z:
+                    <paper-input type="Number" auto-validate value="{{data.Position.2}}">{{data.Position.2}}</paper-input>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="tier">Look at X:
+                    <paper-input type="Number" auto-validate value="{{data.LookAt.0}}">{{data.LookAt.0}}</paper-input>
+                </div>
+                <div class="tier">Look at Y:
+                    <paper-input type="Number" auto-validate value="{{data.LookAt.1}}">{{data.LookAt.1}}</paper-input>
+                </div>
+                <div class="tier">Look at Z:
+                    <paper-input type="Number" auto-validate value="{{data.LookAt.2}}">{{data.LookAt.2}}</paper-input>
+                </div>
+            </div>
+
+            <div>
+                <div>R</div>
+                <paper-slider class="red" value="{{data.Color.0}}" max="255" editable></paper-slider>
+            </div>
+            <div>
+                <div>G</div>
+                <paper-slider class="green" value="{{data.Color.1}}" max="255" editable></paper-slider>
+            </div>
+            <div>
+                <div>B</div>
+                <paper-slider class="blue" value="{{data.Color.2}}" max="255" editable></paper-slider>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-light",
+
+            properties: {
+                data: Object,
+                id: Number
+            }
+        });
+    </script>
+
+</dom-module>

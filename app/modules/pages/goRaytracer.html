@@ -6,6 +6,34 @@
 
         <section>
             <div class="base-container">
+                <paper-input type="file" on-change="addobjfile"></paper-input>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <div class="base-container">
+                <template is="dom-repeat" items="{{scene.objfiles}}">
+                    <my-object data={{item}}></my-object>
+                </template>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <div class="base-container">
+                <template is="dom-repeat" items="{{scene.lights}}">
+                    <my-light data={{item}}></my-light>
+                </template>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <div class="base-container">
 
                 <template is="dom-repeat" items="{{scene.triangles}}">
                     <my-triangle data={{item}}></my-triangle>
@@ -15,10 +43,8 @@
                     <my-sphere data={{item}}></my-sphere>
                 </template>
 
-                <paper-button raised on-click="resolve">Submit</paper-button>
 
-                <paper-button raised on-click="addSphere"><iron-icon icon="icons:add"></iron-icon>Sphere</paper-button>
-                <paper-button raised on-click="addTriangle"><iron-icon icon="icons:add"></iron-icon>Triangle</paper-button>
+                <paper-button raised on-click="resolve">Submit</paper-button>
 
             <div>
         </section>
@@ -47,8 +73,14 @@
                             Width: 500,
                             Height:500
                         },
-                        triangles: [],
-                        spheres: []
+                        objfiles: [],
+                        lights: [
+                            {
+                                "Color" : [255, 255, 255],
+                                "Position" : [-1000, 0, 0],
+                                "LookAt" : [0, 0, 0]
+                            }
+                        ]
                     }
                 }
 
@@ -59,41 +91,27 @@
             },
 
             resolve: function() {
-                for (var i = 0; i < this.scene.spheres.length; i++) {
-                    this.scene.spheres[i].X = Number(this.scene.spheres[i].X)
-                    this.scene.spheres[i].Y = Number(this.scene.spheres[i].Y)
-                    this.scene.spheres[i].Z = Number(this.scene.spheres[i].Z)
-                }
-                for (var i = 0; i < this.scene.spheres.length; i++) {
-                    this.scene.triangles.P1.X = Number(this.scene.triangles.P1.X)
-                    this.scene.triangles.P2.Y = Number(this.scene.triangles.P2.Y)
-                    this.scene.triangles.P3.Z = Number(this.scene.triangles.P3.Z)
-                    this.scene.triangles.P1.X = Number(this.scene.triangles.P1.X)
-                    this.scene.triangles.P2.Y = Number(this.scene.triangles.P2.Y)
-                    this.scene.triangles.P3.Z = Number(this.scene.triangles.P3.Z)
-                    this.scene.triangles.P1.X = Number(this.scene.triangles.P1.X)
-                    this.scene.triangles.P2.Y = Number(this.scene.triangles.P2.Y)
-                    this.scene.triangles.P3.Z = Number(this.scene.triangles.P3.Z)
+                for (var i = 0; i < this.scene.objfiles.length; i++) {
+                    this.scene.objfiles[i].RotateX = Number(this.scene.objfiles[i].RotateX)
+                    this.scene.objfiles[i].RotateY = Number(this.scene.objfiles[i].RotateY)
+                    this.scene.objfiles[i].RotateZ = Number(this.scene.objfiles[i].RotateZ)
                 }
                 this.rt.resolve(this.scene)
             },
 
-            addTriangle: function() {
-                this.push('scene.triangles', {
-                    P1: [ 0, 0, 100 ],
-                    P2: [0, -100, 0 ],
-                    P3: [0, 100, 0 ],
-                    Color: [255, 0, 0]
-                });
-            },
-
-            addSphere: function() {
-                this.push('scene.spheres', {
-                    Size: 30,
-                    X: 0, Y: 0, Z: 0,
-                    Color: [255, 0, 0]
-                });
+            addobjfile: function(e) {
+                var r = new FileReader();
+                r.onload = function(e) {
+                    this.push('scene.objfiles', {
+                        Value: e.target.result,
+                        Position: [0, 0, 0],
+                        RotateX: 0, RotateY: 0, RotateZ: 0,
+                        Color: [255, 0, 0]
+                    })
+                }.bind(this)
+                r.readAsText(e.target.files[0]);
             }
+
         });
     </script>
 
